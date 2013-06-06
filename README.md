@@ -1,9 +1,8 @@
 API MOIP ASSINATURAS
 --------------------
-
-** Pixxel: Negocie - Scriptboard **
-
 Em Desenvolvimento
 ------------------
-
-**Autor:** Douglas Rossignolli @xdougx
+POR
+-----
+Pixxel - http://www.pixxel.net.br
+Autor - Douglas Rossignolli @xdougx
