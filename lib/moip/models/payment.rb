@@ -8,14 +8,14 @@ class Moip::Payment < Moip::Model
 
 	def attributes
 		{ 
-			"id" => id,
-			"moip_id" => moip_id,
-			"status" => status,
-			"subscription_code" => subscription_code,
-			"customer_code" => customer_code,
-			"invoice" => invoice,
-			"payment_method" => payment_method,
-			"creation_date" => creation_date
+			"id": id,
+			"moip_id": moip_id,
+			"status": status,
+			"subscription_code": subscription_code,
+			"customer_code": customer_code,
+			"invoice": invoice,
+			"payment_method": payment_method,
+			"creation_date": creation_date
 		}
 	end
 
