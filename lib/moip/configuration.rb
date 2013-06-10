@@ -20,6 +20,5 @@ module Moip
       self.token = ""
       self.acount_key = ""
     end
-
-	end
+  end
 end

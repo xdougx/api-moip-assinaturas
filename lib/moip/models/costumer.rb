@@ -1,18 +1,20 @@
 # encoding: utf-8
-class Moip::ACostumer < Moip::Model
+class Moip::Costumer < Moip::Model
 	include HTTParty
 	include Moip::Header
 
-	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_plano
+	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_cliente
 	attr_accessor :code, :email, :fullname, :cpf, :phone_area_code, 
 								:phone_number, :birthdate_day, :birthdate_month, 
-								:birthdate_year, :adress, :billing_info
+								:birthdate_year, :address, :billing_info, :costumers
 
 	validates :code, :email, :fullname, :cpf, :phone_area_code, 
 						:phone_number, :birthdate_day, :birthdate_month, 
 						:birthdate_year, :presence => true
 
-	validate :validates_presence_of_adress, :validates_presence_of_billing_info
+	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => "Invalid email"
+
+	validate :validates_presence_of_address, :validates_presence_of_billing_info
 
 	def attributes
 		{
@@ -25,24 +27,24 @@ class Moip::ACostumer < Moip::Model
 	    "birthdate_day" => birthdate_day,
 	    "birthdate_month" => birthdate_month,
 	    "birthdate_year" => birthdate_year,
-	    "adress" => adress,
+	    "address" => address,
 	    "billing_info" => billing_info
 		}
 	end
 
-	def adress= options = {}
-		@adress = Adress.build options
+	def address= options = {}
+		@address = Moip::Address.build options
 	end
 
-	def adress
-		@adress.serializable_hash
+	def address
+		@address.serializable_hash.delete_if {|key, value| value.nil? }
 	end
 
 	def billing_info= options
 		if options.is_a? Hash
-			@billing_info = BillingInfo.build options
-		elsif options.is_a? BillingInfo
-			@billing_info = BillingInfo
+			@billing_info = Moip::BillingInfo.build options
+		elsif options.is_a? Moip::BillingInfo
+			@billing_info = Moip::BillingInfo
 		end
 	end
 
@@ -50,13 +52,13 @@ class Moip::ACostumer < Moip::Model
 		@billing_info.to_hash
 	end
 
-	def validates_presence_of_adress
-		self.errors.add :adress, "can't be blank" and return if @adress.nil?
+	def validates_presence_of_address
+		self.errors.add :address, "can't be blank" and return if @address.nil?
 
-		if @adress.valid?
+		if @address.valid?
 			true
 		else
-			self.errors.add :adress, @adress.errors.full_messages.first
+			self.errors.add :adress, @address.errors.full_messages.first
 		end
 	end
 
@@ -70,27 +72,35 @@ class Moip::ACostumer < Moip::Model
 		end
 	end
 
+	def costumers= hash
+		@costumers = []
+		hash.each do |e|
+			costumer = self.class.new
+			costumer.set_parameters e
+			@costumers << costumer
+		end
+		@costumers
+	end
 
-	def list
-		self.class.get(base_url(:costumers), default_header).parsed_response
+
+	def load
+		list = self.class.get(base_url(:customers), default_header).parsed_response
+		self.costumers = list["costumers"]
 	end
 
 	# metodo que envia as informações para a API do moip e cria um novo cliente
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_cliente
 	def create
 		if self.valid?
-			self.class.post(base_url(:costumers, :params => "new_vault=true"), default_header(self.to_json)).parsed_response
+			self.class.post(base_url(:customers, :params => "new_vault=true"), default_header(self.to_json)).parsed_response
 		else
 			raise Exception.new "#{self.errors.first[0]} #{self.errors.first[1]}"
 		end
 	end
-
-	def find
-		# todo: the find
-	end
-
-	def delete
-		# todo: the delete
+	
+	def find code
+		response = self.class.get(base_url(:customers, :code => code), default_header).parsed_response
+		self.set_parameters response unless response.nil?
 	end
 	
 end

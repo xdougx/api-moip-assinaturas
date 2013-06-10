@@ -6,7 +6,7 @@ class Moip::Plan < Moip::Model
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_plano
 	attr_accessor :code, :name, :description, :amount, 
 								:setup_fee, :interval, :billing_cycles, 
-								:status, :max_qty
+								:status, :max_qty, :plans
 
 	validates :code, :name, :amount, :presence => true
 
@@ -42,9 +42,20 @@ class Moip::Plan < Moip::Model
 		end
 	end
 
+	def plans= hash
+		@plans = []
+		hash.each do |e|
+			plan = self.class.new
+			plan.set_parameters e
+			@plans << plan
+		end
+		@plans
+	end
+
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#listar_plano
-	def list
-		self.class.get(base_url(:plans), default_header).parsed_response
+	def load
+		list = self.class.get(base_url(:plans), default_header).parsed_response
+		self.plans = list["plans"]
 	end
 
 	# metodo que envia as informações para a API do moip e cria um novo plano
