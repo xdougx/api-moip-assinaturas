@@ -1,5 +1,5 @@
 module Moip
-	# Configures global settings for Moip
+  # Configures global settings for Moip
   #   Moip.configure do |config|
   #     config.token = "secret"
   #     config.key = "secret"
@@ -13,7 +13,7 @@ module Moip
     @config
   end
 
-	class Configuration
+  class Configuration
     attr_accessor :token, :acount_key
 
     def initialize

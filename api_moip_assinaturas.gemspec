@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Douglas Rossignolli"]
   s.email       = 'douglas@pixxel.net.br'
   s.homepage    = 'http://pixxel.net.br'
+  spec.license = 'Apache Licence 2.0'
   s.files       = Dir["{lib/**/*.rb,README.rdoc,test/**/*.rb,Rakefile,*.gemspec}"]
 
   s.required_ruby_version     = '>= 1.9.3'
