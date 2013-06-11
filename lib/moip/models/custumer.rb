@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Moip::Costumer < Moip::Model
+class Moip::Custumer < Moip::Model
 	include HTTParty
 	include Moip::Header
 
@@ -72,14 +72,14 @@ class Moip::Costumer < Moip::Model
 		end
 	end
 
-	def costumers= hash
-		@costumers = []
+	def custumers= hash
+		@custumers = []
 		hash.each do |e|
 			costumer = self.class.new
 			costumer.set_parameters e
-			@costumers << costumer
+			@custumers << costumer
 		end
-		@costumers
+		@custumers
 	end
 
 
