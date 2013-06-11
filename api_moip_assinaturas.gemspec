@@ -1,3 +1,6 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
   s.version     = '0.1.3'

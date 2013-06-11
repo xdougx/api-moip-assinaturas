@@ -1,7 +1,7 @@
 module Moip
 end
 
-# imports para o statup
+# imports para o startup
 require 'httparty'
 require 'json'
 require 'active_model'
