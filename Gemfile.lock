@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    api-moip-assinaturas (0.0.6)
+    api-moip-assinaturas (0.1.4)
 
 GEM
   remote: http://rubygems.org/

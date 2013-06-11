@@ -1,5 +1,6 @@
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "api-moip-assinaturas/version"
 
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
@@ -18,4 +19,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'httparty', '~> 0.11.0', '>= 0.11.0'
   s.add_development_dependency 'json', '~> 1.7.7', '>= 1.7.7'
   s.add_development_dependency 'activemodel', '~> 3.2.12', '>= 3.2.12'
+  s.add_dependency 'httparty', '>= 0.11.0'
+  s.add_dependency 'json', '>= 1.7.7'
+  s.add_dependency 'activemodel', '>= 3.2.12'
 end
