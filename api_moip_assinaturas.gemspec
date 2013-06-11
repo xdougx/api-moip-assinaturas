@@ -15,9 +15,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version     = '>= 1.9.3'
   s.required_rubygems_version = '>= 1.8.11'
-  s.add_development_dependency 'httparty', '~> 0.11.0', '>= 0.11.0'
-  s.add_development_dependency 'json', '~> 1.7.7', '>= 1.7.7'
-  s.add_development_dependency 'activemodel', '~> 3.2.12', '>= 3.2.12'
   s.add_dependency 'httparty', '>= 0.11.0'
   s.add_dependency 'json', '>= 1.7.7'
   s.add_dependency 'activemodel', '>= 3.2.12'
