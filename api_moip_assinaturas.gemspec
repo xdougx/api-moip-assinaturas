@@ -4,7 +4,7 @@ require "api-moip-assinaturas/version"
 
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
-  s.version     = '0.1.4'
+  s.version     = '0.1.5'
   s.date        = '2013-06-10'
   s.summary     = "Moip Assinaturas by Pixxel"
   s.description = "Gem desenvolvida para atender aos requisitos do moip api de assinaturas"
