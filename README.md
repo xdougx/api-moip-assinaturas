@@ -117,6 +117,7 @@ class WebhooksController < ApplicationController
           BossMailer.pagamento_do_cliente_confirmado(hook.resource).deliver
           # vou avisar o meu cliente que a assinatura dele está em dia
           ClientMailer.avisa_confirmacao_pagamento(hook.resource).deliver
+        end
       end
     end
     render :text => "done ok"
