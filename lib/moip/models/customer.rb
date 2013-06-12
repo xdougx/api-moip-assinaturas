@@ -1,12 +1,12 @@
 # encoding: utf-8
-class Moip::Custumer < Moip::Model
+class Moip::Customer < Moip::Model
 	include HTTParty
 	include Moip::Header
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_cliente
 	attr_accessor :code, :email, :fullname, :cpf, :phone_area_code, 
 								:phone_number, :birthdate_day, :birthdate_month, 
-								:birthdate_year, :address, :billing_info, :costumers
+								:birthdate_year, :address, :billing_info, :customers
 
 	validates :code, :email, :fullname, :cpf, :phone_area_code, 
 						:phone_number, :birthdate_day, :birthdate_month, 
@@ -72,14 +72,14 @@ class Moip::Custumer < Moip::Model
 		end
 	end
 
-	def custumers= hash
-		@custumers = []
+	def customers= hash
+		@customers = []
 		hash.each do |e|
-			costumer = self.class.new
-			costumer.set_parameters e
-			@custumers << costumer
+			customer = self.class.new
+			customer.set_parameters e
+			@customers << customer
 		end
-		@custumers
+		@customers
 	end
 
 
