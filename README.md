@@ -89,6 +89,40 @@ Ativar um plano:
   # => true
 ```
 
+#### Usando os Webhooks ####
+A classe Moip::Webhooks foi desenvolvida para ser bem simples de ser usada então veja um exemplo do seu uso:
+``` ruby
+# como eu costumo usar o rails então
+class WebhooksController < ApplicationController
+  def moip
+    json =  JSON.parse(request.body.read) # hash
+    
+    # http://moiplabs.github.io/assinaturas-docs/webhooks.html
+    # hook.on :model, :event => todo hook enviado pelo moip possui um dado chamado event
+    # o valor dele sempre contém model.method, veja a página de webhooks para maiores informações
+    # sobre os eventos
+    Moip::Webhooks.listen json do |hook|
+      # quando o moip envia dado sobre a criação de um plano
+      hook.on :plan, :created do
+        # quero criar avisar o meu chefe
+        # hook.resource pode ser um Plan, Customer, Subscription
+        # Invoice ou Payment
+        BossMailer.avisa_criacao_de_um_novo_plano(hook.resource).deliver
+  		end
+      
+      hook.on :payment, :status_updated do
+        # quando o pagamento do meu cliente está confirmado
+        if hook.resource.status[:code] == 4
+          # vou avisar o meu chefe támbem
+          BossMailer.pagamento_do_cliente_confirmado(hook.resource).deliver
+          # vou avisar o meu cliente que a assinatura dele está em dia
+          ClientMailer.avisa_confirmacao_pagamento(hook.resource).deliver
+      end
+    end
+    render :text => "done ok"
+  end
+end
+```
 
 ### Desenvolvido por: ###
  - Pixxel - http://www.pixxel.net.br
