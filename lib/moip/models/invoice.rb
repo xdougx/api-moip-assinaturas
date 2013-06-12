@@ -32,11 +32,11 @@ class Moip::Invoice < Moip::Model
 
 	def full_status
 		status = case self.status
-			when 1 then	"Em aberto"								# A fatura foi gerada mas ainda não foi paga pelo assinante.
-			when 2 then	"Aguardando Confirmação"	# A fatura foi paga pelo assinante, mas o pagamento está em processo de análise de risco.
-			when 3 then	"Pago"										# A fatura foi paga pelo assinante e confirmada.
-			when 4 then	"Não Pago"								# O assinante tentou pagar a fatura, mas o pagamento foi negado pelo banco emissor do cartão de crédito ou a análise de risco detectou algum problema. Veja os motivos possíveis.
-			when 5 then	"Atrasada"								# O pagamento da fatura foi cancelado e serão feitas novas tentativas de cobrança de acordo com a configuração de retentativa automática.
+			when 1 then "Em aberto" # A fatura foi gerada mas ainda não foi paga pelo assinante.
+			when 2 then "Aguardando Confirmação" # A fatura foi paga pelo assinante, mas o pagamento está em processo de análise de risco.
+			when 3 then "Pago" # A fatura foi paga pelo assinante e confirmada.
+			when 4 then "Não Pago" # O assinante tentou pagar a fatura, mas o pagamento foi negado pelo banco emissor do cartão de crédito ou a análise de risco detectou algum problema. Veja os motivos possíveis.
+			when 5 then	"Atrasada" # O pagamento da fatura foi cancelado e serão feitas novas tentativas de cobrança de acordo com a configuração de retentativa automática.
 		end
 		status
 	end
@@ -56,7 +56,7 @@ class Moip::Invoice < Moip::Model
 	end
 
 	def payments
-		
+		@payments ||= Moip::Payment.build(:subscription_code => self.code).payments
 	end
 	
 end
