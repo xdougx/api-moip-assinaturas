@@ -4,7 +4,7 @@ class Moip::Invoice < Moip::Model
 	include Moip::Header
 
 	attr_accessor :id, :amount, :subscription_code, :occurrence, 
-								:status, :items, :plan, :customer, :creation_date, :invoices
+	              :status, :items, :plan, :customer, :creation_date, :invoices
 
 	def attributes
 		{
@@ -36,7 +36,7 @@ class Moip::Invoice < Moip::Model
 			when 2 then "Aguardando Confirmação" # A fatura foi paga pelo assinante, mas o pagamento está em processo de análise de risco.
 			when 3 then "Pago" # A fatura foi paga pelo assinante e confirmada.
 			when 4 then "Não Pago" # O assinante tentou pagar a fatura, mas o pagamento foi negado pelo banco emissor do cartão de crédito ou a análise de risco detectou algum problema. Veja os motivos possíveis.
-			when 5 then	"Atrasada" # O pagamento da fatura foi cancelado e serão feitas novas tentativas de cobrança de acordo com a configuração de retentativa automática.
+			when 5 then "Atrasada" # O pagamento da fatura foi cancelado e serão feitas novas tentativas de cobrança de acordo com a configuração de retentativa automática.
 		end
 		status
 	end
