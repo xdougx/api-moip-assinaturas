@@ -108,7 +108,7 @@ class WebhooksController < ApplicationController
         # hook.resource pode ser um Plan, Customer, Subscription
         # Invoice ou Payment
         BossMailer.avisa_criacao_de_um_novo_plano(hook.resource).deliver
-  		end
+      end
       
       hook.on :payment, :status_updated do
         # quando o pagamento do meu cliente está confirmado
