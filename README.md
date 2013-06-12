@@ -119,6 +119,11 @@ class WebhooksController < ApplicationController
           ClientMailer.avisa_confirmacao_pagamento(hook.resource).deliver
         end
       end
+      
+      hook.on :subscription, :created do
+        BossMailer.avisa_novo_cliente(hook.resource).deliver
+      end
+      
     end
     render :text => "done ok"
   end
