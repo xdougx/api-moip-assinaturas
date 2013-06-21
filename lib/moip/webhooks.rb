@@ -4,11 +4,13 @@ module Moip
 		attr_accessor :event, :date, :env, :resource
 
 		def events
-			@events ||= {}
+			@events ||= []
 		end
-
+		
 		def on event, kind, &block
-			self.events[event] = { :kind => kind, :runnable => block }
+			hash = {}
+			hash[event] = { :kind => kind, :runnable => block }
+			self.events << hash
 		end
 
 		def run
@@ -16,11 +18,15 @@ module Moip
 			kind = self.event.split(".")[1]
 			action = nil
 
-			self.events.each do |key, hash|
-				if event == key.to_s and hash[:kind].to_s == kind
-					action = hash[:runnable]
+			self.events.each do |hash|
+				e_sym = event.to_sym 
+				if hash.has_key? e_sym
+					if hash[e_sym][:kind].to_s == kind
+						action = hash[e_sym][:runnable]
+					end
 				end
 			end
+
 			action.call if action.is_a? Proc
 		end
 
@@ -50,3 +56,6 @@ module Moip
 
 	end
 end
+
+
+ { :event => { :kind => "Tipo", :runnable => "Proc" }	}
