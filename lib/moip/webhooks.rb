@@ -56,6 +56,3 @@ module Moip
 
 	end
 end
-
-
- { :event => { :kind => "Tipo", :runnable => "Proc" }	}
