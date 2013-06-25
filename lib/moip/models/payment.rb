@@ -39,7 +39,7 @@ class Moip::Payment < Moip::Model
 	end
 
 	def find
-		response = self.class.get(base_url(:invoices, :code => self.id), default_header).parsed_response
+		response = self.class.get(base_url(:payments, :code => self.id), default_header).parsed_response
 		self.set_parameters response unless response.nil?
 	end
 

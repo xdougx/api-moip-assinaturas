@@ -14,11 +14,12 @@ module Moip
   end
 
   class Configuration
-    attr_accessor :token, :acount_key
+    attr_accessor :token, :acount_key, :auth_key
 
     def initialize
       self.token = ""
       self.acount_key = ""
+      self.auth_key = ""
     end
   end
 end
