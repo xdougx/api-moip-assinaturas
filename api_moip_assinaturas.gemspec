@@ -3,8 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
-  s.version     = '0.2.2'
-  s.date        = '2013-06-25'
+  s.version     = '0.2.3'
+  s.date        = '2013-06-26'
   s.summary     = "Moip Assinaturas by Pixxel"
   s.description = "Gem desenvolvida para atender aos requisitos do moip api de assinaturas"
   s.authors     = ["Douglas Rossignolli"]
