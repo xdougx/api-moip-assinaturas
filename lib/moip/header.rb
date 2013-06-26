@@ -14,7 +14,14 @@ module Moip
 		end
 
 		def base_url model, options = {}
-			url = "https://sandbox.moip.com.br/assinaturas/v1/#{model.to_s}" 
+			url = ""
+
+			if Moip.conf.env == "production"
+				url = "https://api.moip.com.br/assinaturas/v1/#{model.to_s}"
+			else
+				url = "https://sandbox.moip.com.br/assinaturas/v1/#{model.to_s}" 
+			end
+				
 			url << "/#{options[:code]}" 	if options[:code]
 			url << "/#{options[:status]}" if options[:status]
 			url << "?#{options[:params]}" if options[:params]
