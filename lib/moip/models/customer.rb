@@ -12,7 +12,7 @@ class Moip::Customer < Moip::Model
 						:phone_number, :birthdate_day, :birthdate_month, 
 						:birthdate_year, :presence => true
 
-	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => I18n.t("invalid_format")
+	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => I18n.t("moip.errors.invalid_format")
 
 	validate :validates_presence_of_address, :validates_presence_of_billing_info
 
@@ -53,7 +53,7 @@ class Moip::Customer < Moip::Model
 	end
 
 	def validates_presence_of_address
-		self.errors.add :address, I18n.t("presence_of_address") and return if @address.nil?
+		self.errors.add :address, I18n.t("moip.errors.presence_of_address") and return if @address.nil?
 
 		if @address.valid?
 			true
@@ -63,7 +63,7 @@ class Moip::Customer < Moip::Model
 	end
 
 	def validates_presence_of_billing_info
-		self.errors.add :billing_info, I18n.t("presence_of_billing_info") and return if @billing_info.nil?
+		self.errors.add :billing_info, I18n.t("moip.errors.presence_of_billing_info") and return if @billing_info.nil?
 
 		if @billing_info.valid?
 			true
