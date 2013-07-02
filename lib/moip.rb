@@ -16,4 +16,4 @@ require 'moip/models/payment'
 require 'moip/models/plan'
 require 'moip/models/subscription'
 
-I18n.load_path += ['lib/locales/en.yml']
+I18n.load_path += Dir["{lib/locales/*.yml}"]
