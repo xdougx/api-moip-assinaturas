@@ -12,7 +12,7 @@ class Moip::Customer < Moip::Model
 						:phone_number, :birthdate_day, :birthdate_month, 
 						:birthdate_year, :presence => true
 
-	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => I18n.t("moip.errors.invalid_format")
 
 	validate :validates_presence_of_address, :validates_presence_of_billing_info
 

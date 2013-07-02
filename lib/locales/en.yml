@@ -3,3 +3,4 @@ en:
     errors:
       presence_of_address: "can't be blank"
       presence_of_billing_info: "can't be blank"
+      invalid_format: "invalid format"
