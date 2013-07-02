@@ -20,7 +20,7 @@ module Moip
       self.token = ""
       self.acount_key = ""
       self.auth_key = ""
-      self.env = ""
+      self.env = "" 
     end
   end
 end
