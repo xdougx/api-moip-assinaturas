@@ -16,4 +16,4 @@ require 'moip/models/payment'
 require 'moip/models/plan'
 require 'moip/models/subscription'
 
-I18n.load_path << File.dirname(__FILE__) + '/locale/en.yml'
+I18n.load_path << File.dirname(__FILE__) + '/locales/en.yml'

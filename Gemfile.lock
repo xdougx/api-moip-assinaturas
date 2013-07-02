@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    api-moip-assinaturas (0.2.6)
+    api-moip-assinaturas (0.2.7)
       activemodel (>= 3.2.12)
       httparty (>= 0.11.0)
       i18n (~> 0.6.1, >= 0.6.1)
