@@ -34,7 +34,7 @@ class Moip::Customer < Moip::Model
 		if options.is_a? Hash
 			@address = Moip::Address.build options
 		elsif options.is_a? Moip::Address
-			@address = Moip::Address
+			@address = options
 		end
 	end
 
@@ -46,7 +46,7 @@ class Moip::Customer < Moip::Model
 		if options.is_a? Hash
 			@billing_info = Moip::BillingInfo.build options
 		elsif options.is_a? Moip::BillingInfo
-			@billing_info = Moip::BillingInfo
+			@billing_info = options
 		end
 	end
 
