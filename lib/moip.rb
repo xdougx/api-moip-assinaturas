@@ -1,6 +1,10 @@
 module Moip
 end
 
+# locales
+require 'i18n'
+I18n.load_path << File.dirname(__FILE__) + '/moip/locale/en.yml'
+
 # imports para o startup
 require 'httparty'
 require 'json'
@@ -15,5 +19,3 @@ require 'moip/models/invoice'
 require 'moip/models/payment'
 require 'moip/models/plan'
 require 'moip/models/subscription'
-
-I18n.load_path << File.dirname(__FILE__) + '/locales/en.yml'

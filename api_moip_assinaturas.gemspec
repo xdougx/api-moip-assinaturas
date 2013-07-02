@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
-  s.version     = '0.2.8'
+  s.version     = '0.2.10'
   s.date        = '2013-07-02'
   s.summary     = "Moip Assinaturas by Pixxel"
   s.description = "Gem desenvolvida para atender aos requisitos do moip api de assinaturas"
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = 'douglas@pixxel.net.br'
   s.homepage    = 'https://github.com/xdougx/api-moip-assinaturas'
   s.license     = 'Apache Licence 2.0'
-  s.files       = Dir["{lib/**/*.rb,lib/locales/*.yml,README.rdoc,test/**/*.rb,Rakefile,*.gemspec}"]
+  s.files       = Dir["{lib/**/*.rb,lib/**/*.yml,README.rdoc,test/**/*.rb,Rakefile,*.gemspec}"]
   s.require_paths = ["lib"]
 
   s.required_ruby_version     = '>= 1.9.3'
