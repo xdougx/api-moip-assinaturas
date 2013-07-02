@@ -56,7 +56,7 @@ class Moip::Customer < Moip::Model
 		if @address.valid?
 			true
 		else
-			self.errors.add :address, @address.errors.full_messages.first
+			self.errors.add @address.errors.first[0], @address.errors.first[1]
 		end
 	end
 
@@ -66,7 +66,7 @@ class Moip::Customer < Moip::Model
 		if @billing_info.valid?
 			true
 		else
-			self.errors.add :billing_info, @billing_info.errors.full_messages.first
+			self.errors.add @billing_info.errors.first[0], @billing_info.errors.first[1]
 		end
 	end
 
