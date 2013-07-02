@@ -31,14 +31,18 @@ class Moip::Customer < Moip::Model
 	end
 
 	def address= options = {}
-		@address = Moip::Address.build options
+		if options.is_a? Hash
+			@address = Moip::Address.build options
+		elsif options.is_a? Moip::Address
+			@address = Moip::Address
+		end
 	end
 
 	def address
 		@address.serializable_hash.delete_if {|key, value| value.nil? }
 	end
 
-	def billing_info= options
+	def billing_info= options = {}
 		if options.is_a? Hash
 			@billing_info = Moip::BillingInfo.build options
 		elsif options.is_a? Moip::BillingInfo
