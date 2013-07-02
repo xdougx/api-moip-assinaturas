@@ -4,3 +4,6 @@ en:
       presence_of_address: "can't be blank"
       presence_of_billing_info: "can't be blank"
       invalid_format: "invalid format"
+      invalid_card_number: "invalid card number"
+      invalid_expiration_year: "invalid expiration year"
+      invalid_expiration_month: "invalid expiration month"

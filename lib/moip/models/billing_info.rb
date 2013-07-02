@@ -4,12 +4,32 @@ class Moip::BillingInfo < Moip::Model
 
 	validates :holder_name, :number, :expiration_month, :expiration_year, :presence => true
 	
-	validates_format_of :expiration_month, :with => /[0-9]{2}/
-	validates_format_of :expiration_year, :with => /[0-9]{2}/
-	validates_format_of :number, :with => /[0-9]{16}/
-	
-	validate :valida_numero_cartao
+	validate :valida_numero_cartao, :validates_format_of_number, 
+					 :validates_format_of_expiration_month, :validates_format_of_expiration_year
 
+	def validates_format_of_number 
+		if self.number.to_s.match /[0-9]{16}/
+			true
+		else
+			self.errors.add :number, I18n.t("moip.errors.invalid_card_number")
+		end
+	end
+
+	def validates_format_of_expiration_year
+		if self.expiration_year.to_s.match /[0-9]{2}/
+			true
+		else
+			self.errors.add :expiration_year, I18n.t("moip.errors.invalid_expiration_year")
+		end
+	end
+
+	def validates_format_of_expiration_month
+		if self.expiration_month.to_s.match /[0-9]{2}/
+			true
+		else
+			self.errors.add :expiration_month, I18n.t("moip.errors.invalid_expiration_month")
+		end
+	end
 
 	def valida_numero_cartao
 		patterns.each do |pattern|
