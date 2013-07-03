@@ -33,7 +33,7 @@ class Moip::BillingInfo < Moip::Model
 
 	def valida_numero_cartao
 		patterns.each do |pattern|
-			self.errors.add :number, "is invalid" and return if @number.to_s.match pattern
+			self.errors.add :number, I18n.t("moip.errors.invalid_expiration_month") and return if @number.to_s.match pattern
 			false
 		end 
 	end
