@@ -18,7 +18,7 @@ class Moip::Address < Moip::Model
 	end
 
 	def validates_format_of_zipcode
-		if self.zipcode.to_s.match /[0-9]{2}/
+		if self.zipcode.to_s.match /[0-9]{8}/
 			true
 		else
 			self.errors.add :zipcode, I18n.t("moip.errors.invalid_format")
