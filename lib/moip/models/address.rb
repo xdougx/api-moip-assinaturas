@@ -7,8 +7,23 @@ class Moip::Address < Moip::Model
 						:district, :city, :state, :country, 
 						:zipcode, :presence => true
 
-	validates_format_of :number, :with => /[0-9]{1,6}/
-	validates_format_of :zipcode, :with => /[0-9]{8}/
+	validate :validates_format_of_number, :validates_format_of_zipcode
+
+	def validates_format_of_number
+		if self.number.to_s.match /[0-9]{2}/
+			true
+		else
+			self.errors.add :number, I18n.t("moip.errors.invalid_format")
+		end
+	end
+
+	def validates_format_of_zipcode
+		if self.zipcode.to_s.match /[0-9]{2}/
+			true
+		else
+			self.errors.add :zipcode, I18n.t("moip.errors.invalid_format")
+		end
+	end
 
 	def attributes
 		{

@@ -4,7 +4,7 @@ class Moip::BillingInfo < Moip::Model
 
 	validates :holder_name, :number, :expiration_month, :expiration_year, :presence => true
 	
-	validate :valida_numero_cartao, :validates_format_of_number, 
+	validate :validates_format_of_number, :valida_numero_cartao, 
 					 :validates_format_of_expiration_month, :validates_format_of_expiration_year
 
 	def validates_format_of_number 
