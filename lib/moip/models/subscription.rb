@@ -8,7 +8,7 @@ class Moip::Subscription < Moip::Model
                 :errors, :alerts, :invoice, :creation_date, 
                 :expiration_date, :subscriptions
 
-	validates :code, :amount,	:plan, :customer, :presence => true
+	validates :code, :amount, :plan, :customer, :presence => true
 
 	def attributes
 		{
@@ -119,13 +119,4 @@ class Moip::Subscription < Moip::Model
 
 		self.class.put(base_url(:subscriptions, :code => self.code), default_header(hash.to_json)).parsed_response
 	end
-
-			
-		
-
-
-
-
-
-	
 end
