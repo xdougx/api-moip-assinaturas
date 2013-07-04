@@ -5,7 +5,7 @@ class Moip::Subscription < Moip::Model
 
 	attr_accessor :code, :amount, :plan, :customer, 
                 :next_invoice_date, :status, :message, 
-                :errors, :alerts, :invoice, :creation_date, 
+                :invoice, :creation_date, 
                 :expiration_date, :subscriptions
 
 	validates :code, :amount, :plan, :customer, :presence => true
