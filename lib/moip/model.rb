@@ -3,6 +3,7 @@ module Moip
 	class Model		
 		include ActiveModel::Validations
 		include ActiveModel::Serialization
+		include ActiveModel::Errors
 
 		def to_json
 			hash = self.serializable_hash.delete_if {|key, value| value.nil? }
