@@ -13,9 +13,8 @@ class Moip::Subscription < Moip::Model
 
 	def validates_existence_of_plan
 		plan = Moip::Plan.new
-		plan.code = self.plan[:code]
-		
-		if plan.find
+
+		if plan.find self.plan[:code]
 			true
 		else
 			false
