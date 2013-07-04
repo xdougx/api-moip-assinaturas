@@ -1,9 +1,10 @@
 # encoding: utf-8
 module Moip
 	class Model		
+		extend ActiveModel::Errors
 		include ActiveModel::Validations
 		include ActiveModel::Serialization
-		include ActiveModel::Errors
+
 
 		def to_json
 			hash = self.serializable_hash.delete_if {|key, value| value.nil? }
