@@ -23,6 +23,7 @@ class Moip::Subscription < Moip::Model
 		if @plan.is_a? Hash
 			@plan
 		else
+			return nil if @plan.nil?
 			@plan = { :code => @plan }
 			@plan
 		end
@@ -32,6 +33,7 @@ class Moip::Subscription < Moip::Model
 		if @customer.is_a? Hash
 			@customer
 		else
+			return nil if @customer.nil?
 			@customer ={ :code => @customer }
 			@customer
 		end
