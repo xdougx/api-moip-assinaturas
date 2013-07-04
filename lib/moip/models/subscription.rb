@@ -9,6 +9,18 @@ class Moip::Subscription < Moip::Model
                 :expiration_date, :subscriptions
 
 	validates :code, :amount, :plan, :customer, :presence => true
+	validate :validates_existence_of_plan
+
+	def validates_existence_of_plan
+		plan = Moip::Plan.new
+		plan.code = self.plan[:code]
+		
+		if plan.find
+			true
+		else
+			false
+		end
+	end
 
 	def attributes
 		{
@@ -23,7 +35,8 @@ class Moip::Subscription < Moip::Model
 		if @plan.is_a? Hash
 			@plan
 		else
-			{ :code => @plan }
+			@plan = { :code => @plan }
+			@plan
 		end
 	end
 
@@ -31,7 +44,8 @@ class Moip::Subscription < Moip::Model
 		if @customer.is_a? Hash
 			@customer
 		else
-			{ :code => @customer }
+			@customer ={ :code => @customer }
+			@customer
 		end
 	end
 
