@@ -9,17 +9,6 @@ class Moip::Subscription < Moip::Model
                 :expiration_date, :subscriptions
 
 	validates :code, :amount, :plan, :customer, :presence => true
-	validate :validates_existence_of_plan
-
-	def validates_existence_of_plan
-		plan = Moip::Plan.new
-
-		if plan.find self.plan[:code]
-			true
-		else
-			false
-		end
-	end
 
 	def attributes
 		{
