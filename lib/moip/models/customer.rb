@@ -6,7 +6,7 @@ class Moip::Customer < Moip::Model
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_cliente
 	attr_accessor :code, :email, :fullname, :cpf, :phone_area_code, 
 								:phone_number, :birthdate_day, :birthdate_month, 
-								:birthdate_year, :address, :billing_info, :customers
+								:birthdate_year, :address, :billing_info, :customers, :creation_date
 
 	validates :code, :email, :fullname, :cpf, :phone_area_code, 
 						:phone_number, :birthdate_day, :birthdate_month, 
