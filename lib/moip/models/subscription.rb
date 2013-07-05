@@ -69,7 +69,7 @@ class Moip::Subscription < Moip::Model
 
 		if response.key? "errors"
 			puts error = response["errors"][0]
-			self.errors.add :moip_error, "[#{error["code"]}] #{error["message"]}"
+			self.errors.add :moip_error, "[#{error["code"]}] #{error["description"]}"
 			false
 		else
 			true
