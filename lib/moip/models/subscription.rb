@@ -68,7 +68,6 @@ class Moip::Subscription < Moip::Model
 		response = self.class.post(base_url(:subscriptions), default_header(self.to_json)).parsed_response
 
 		if response.key? "errors"
-			puts error = response["errors"][0]
 			self.errors.add :moip_error, "[#{error["code"]}] #{error["description"]}"
 			false
 		else
