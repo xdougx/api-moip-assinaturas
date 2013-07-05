@@ -15,7 +15,7 @@ module Moip
 			end
 		end
 
-		def build_error response
+		def validate_response response
 			if response.key? "errors"
 				error = response["errors"][0]
 				self.errors.add :moip_error, "[#{error["code"]}] #{error["description"]}"
