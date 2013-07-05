@@ -65,8 +65,14 @@ class Moip::Subscription < Moip::Model
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_assinatura
 	def create
-		self.class.post(base_url(:subscriptions), default_header(self.to_json)).parsed_response
-	end
+		response = self.class.post(base_url(:subscriptions), default_header(self.to_json)).parsed_response
+
+		if response.key? "error"
+			self.errors.add :moip_error, "[#{response["error"]["code"]}] #{response["error"]["message"]}"
+			false
+		else
+			true
+		end
 
 	# To Do
 	def create_with_costumer
