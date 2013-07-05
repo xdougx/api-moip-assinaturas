@@ -73,6 +73,7 @@ class Moip::Subscription < Moip::Model
 		else
 			true
 		end
+	end
 
 	# To Do
 	def create_with_costumer
