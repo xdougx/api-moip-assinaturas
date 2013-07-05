@@ -39,11 +39,12 @@ para seus clientes, vamos a um exemplo:
 params = { code: "plano01", name: "Plano Especial", description: "Descrição do Plano Especial", amount: 990,
            setup_fee: 500, max_qty: 1, interval: { length: 1, unit: "MONTH" }, billing_cycles: 12 }
 
-begin 
-  plan = Moip::Plan.build params
-  plan.create
-rescue Exception => error
-  puts error.message
+plan = Moip::Plan.build params
+
+if plan.create
+	# do some awesome things
+else
+	raise Exception.new plan.errors.full_messages.first
 end
 ```
 
