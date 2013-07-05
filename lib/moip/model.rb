@@ -15,6 +15,16 @@ module Moip
 			end
 		end
 
+		def build_error response
+			if response.key? "errors"
+				error = response["errors"][0]
+				self.errors.add :moip_error, "[#{error["code"]}] #{error["description"]}"
+				false
+			else
+				true
+			end
+		end
+
 		class << self
 			# metodo que cria um objeto e seta os seus parametros se responder pela chave
 			# recebe um Hash como parametro

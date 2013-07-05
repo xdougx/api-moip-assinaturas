@@ -102,9 +102,10 @@ class Moip::Customer < Moip::Model
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_cliente
 	def create
 		if self.valid?
-			self.class.post(base_url(:customers, :params => "new_vault=true"), default_header(self.to_json)).parsed_response
+			response = self.class.post(base_url(:customers, :params => "new_vault=true"), default_header(self.to_json)).parsed_response
+			self.validate_response response
 		else
-			raise Exception.new "#{self.errors.first[0]} #{self.errors.first[1]}"
+			false
 		end
 	end
 	

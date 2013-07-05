@@ -62,10 +62,8 @@ class Moip::Plan < Moip::Model
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#criar_plano
 	def create
 		if self.valid?
-			self.class.post(base_url(:plans), default_header(self.to_json)).parsed_response
-		else
-			raise Exception.new "#{self.errors.first[0]} #{self.errors.first[1]}"
-		end
+			response = self.class.post(base_url(:plans), default_header(self.to_json)).parsed_response
+			self.validate_response response
 	end
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#consultar_plano
@@ -80,7 +78,7 @@ class Moip::Plan < Moip::Model
 			self.class.put(base_url(:plans, :code => self.code), default_header(self)).parsed_response
 			true
 		else
-			raise Exception.new "#{self.errors.first[0]} #{self.errors.first[1]}"
+			false
 		end
 	end
 
