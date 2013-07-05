@@ -64,6 +64,9 @@ class Moip::Plan < Moip::Model
 		if self.valid?
 			response = self.class.post(base_url(:plans), default_header(self.to_json)).parsed_response
 			self.validate_response response
+		end
+			false
+		else
 	end
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#consultar_plano
