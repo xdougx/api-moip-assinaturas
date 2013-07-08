@@ -68,6 +68,10 @@ class Moip::BillingInfo < Moip::Model
   	}
 	end
 
+	def build_update
+		{ :credit_card => self.serializable_hash }
+	end
+
 	def to_json
 		hash = { :credit_card => self.serializable_hash }
 		hash.to_json

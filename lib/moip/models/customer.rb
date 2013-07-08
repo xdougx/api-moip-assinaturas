@@ -109,6 +109,18 @@ class Moip::Customer < Moip::Model
 			false
 		end
 	end
+
+
+	# metodo que envia as informações para a API do moip e atualiza os dados do cartão
+	# see http://moiplabs.github.io/assinaturas-docs/api.html#atualizar_cartao
+	def update_billing_info billing_info
+		if billing_info.valid?
+			response = self.class.post(base_url(:customers, :code => self.code, :status => "billing_infos"), default_header(self.build_update.to_json)).parsed_response
+		else
+			false
+		end
+	end
+
 	
 	def find code
 		response = self.class.get(base_url(:customers, :code => code), default_header).parsed_response
