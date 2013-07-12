@@ -116,6 +116,7 @@ class Moip::Customer < Moip::Model
 	def update_billing_info billing_info
 		if billing_info.valid?
 			response = self.class.post(base_url(:customers, :code => self.code, :status => "billing_infos"), default_header(self.build_update.to_json)).parsed_response
+			self.validate_response response
 		else
 			false
 		end
