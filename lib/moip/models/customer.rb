@@ -76,7 +76,7 @@ class Moip::Customer < Moip::Model
 	end
 
 	def validates_format_of_email
-		if self.email.match /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+		if !self.email.nil? and self.email.match /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 			true
 		else
 			self.errors.add :email, I18n.t("moip.errors.invalid_format") and return
