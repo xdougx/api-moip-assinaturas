@@ -23,7 +23,7 @@ class Moip::Invoice < Moip::Model
 	def invoices= hash
 		@invoices = []
 		hash.each do |e|
-			invoice = self.class.new
+			invoice = Moip::Invoice.new
 			invoice.set_parameters e
 			@invoices << invoice
 		end
@@ -51,12 +51,12 @@ class Moip::Invoice < Moip::Model
 	end
 
 	def find
-		response = self.class.get(base_url(:invoices, :code => self.code), default_header).parsed_response
+		response = self.class.get(base_url(:invoices, :code => self.id), default_header).parsed_response
 		self.set_parameters response unless response.nil?
 	end
 
 	def payments
-		@payments ||= Moip::Payment.build(:subscription_code => self.code).payments
+		@payments ||= Moip::Payment.build(:invoice => self.id).payments
 	end
 	
 end

@@ -34,7 +34,7 @@ class Moip::Payment < Moip::Model
 	end
 
 	def load
-		list = self.class.get(base_url(:invoices, :code => self.subscription_code, :status => "payments"), default_header).parsed_response
+		list = self.class.get(base_url(:invoices, :code => self.invoice, :status => "payments"), default_header).parsed_response
 		self.payments = list["payments"]
 	end
 
