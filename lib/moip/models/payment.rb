@@ -22,7 +22,7 @@ class Moip::Payment < Moip::Model
 	def payments= hash
 		@payments = []
 		hash.each do |e|
-			payment = self.class.new
+			payment = Moip::Payment.new
 			payment.set_parameters e
 			@payments << payment
 		end
