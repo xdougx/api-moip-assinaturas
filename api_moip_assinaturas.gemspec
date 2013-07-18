@@ -5,14 +5,16 @@ require 'moip/version'
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
   s.version     = Moip::VERSION.dup
-  s.platform   = Gem::Platform::RUBY
+  s.platform    = Gem::Platform::RUBY
   s.summary     = "Moip Assinaturas by Pixxel"
   s.description = "Gem desenvolvida para atender aos requisitos do moip api de assinaturas"
   s.authors     = ["Douglas Rossignolli"]
   s.email       = 'douglas@pixxel.net.br'
   s.homepage    = 'https://github.com/xdougx/api-moip-assinaturas'
   s.license     = 'Apache Licence 2.0'
-  s.files       = Dir["{lib/**/*.rb,lib/**/*.yml,README.rdoc,test/**/*.rb,Rakefile,*.gemspec}"]
+  
+  s.files       = Dir["README.md", "lib/**/*"]
+  s.test_files  = Dir["test/**/*.rb"]
   s.require_paths = ["lib"]
 
   s.required_ruby_version     = '>= 1.9.3'
