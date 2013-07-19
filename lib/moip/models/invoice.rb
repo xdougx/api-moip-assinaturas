@@ -31,7 +31,7 @@ class Moip::Invoice < Moip::Model
 	end
 
 	def full_status
-		status = case self.status[:code]
+		status = case self.status['code']
 			when 1 then "Em aberto" # A fatura foi gerada mas ainda não foi paga pelo assinante.
 			when 2 then "Aguardando Confirmação" # A fatura foi paga pelo assinante, mas o pagamento está em processo de análise de risco.
 			when 3 then "Pago" # A fatura foi paga pelo assinante e confirmada.
