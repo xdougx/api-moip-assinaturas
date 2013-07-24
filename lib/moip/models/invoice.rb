@@ -58,5 +58,13 @@ class Moip::Invoice < Moip::Model
 	def payments
 		@payments ||= Moip::Payment.build(:invoice => self.id).payments
 	end
+
+	def retry
+		response = self.class.get(base_url(:payments, :code => self.id, :status => "retry"), default_header).parsed_response
+	end
+
+	def self.retry id
+		response = self.class.get(base_url(:payments, :code => id, :status => "retry"), default_header).parsed_response
+	end
 	
 end
