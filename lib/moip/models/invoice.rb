@@ -42,7 +42,7 @@ class Moip::Invoice < Moip::Model
 	end
 
 	def invoices
-		@invoices ||= self.invoices = self.load
+		@invoices ||= self.invoices=(self.load)
 	end
 
 	def load
@@ -60,7 +60,7 @@ class Moip::Invoice < Moip::Model
 	end
 
 	def retry
-		response = self.class.get(base_url(:payments, :code => self.id, :status => "retry"), default_header).parsed_response
+		response = self.class.get(base_url(:invoices, :code => self.id, :status => "retry"), default_header).parsed_response
 	end
 
 	def self.retry id
