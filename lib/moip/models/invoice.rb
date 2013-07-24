@@ -4,7 +4,7 @@ class Moip::Invoice < Moip::Model
 	include Moip::Header
 
 	attr_accessor :id, :amount, :subscription_code, :occurrence, 
-	              :status, :items, :plan, :customer, :creation_date, :invoices
+	              :status, :items, :plan, :customer, :creation_date
 
 	def attributes
 		{
