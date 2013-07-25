@@ -86,27 +86,18 @@ class Moip::Subscription < Moip::Model
 	end
 
 	def suspend
-		if self.status != "suspend"
-			self.status = "suspend"	
-			self.class.put(base_url(:subscriptions, :code => self.code, :status => "suspend"), default_header).parsed_response
-			true
-		end
+		self.class.put(base_url(:subscriptions, :code => self.code, :status => "suspend"), default_header).parsed_response
+		true
 	end
 
 	def activate
-		if self.status != "activate"
-			self.status = "activate"
-			self.class.put(base_url(:subscriptions, :code => self.code, :status => "activate"), default_header).parsed_response
-			true
-		end
+		self.class.put(base_url(:subscriptions, :code => self.code, :status => "activate"), default_header).parsed_response
+		true
 	end
 
 	def cancel
-		if self.status == "activate"
-			self.status = "canceled"
-			self.class.put(base_url(:subscriptions, :code => self.code, :status => "cancel"), default_header).parsed_response
-			true
-		end
+		self.class.put(base_url(:subscriptions, :code => self.code, :status => "cancel"), default_header).parsed_response
+		true
 	end
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#alterar_assinatura
