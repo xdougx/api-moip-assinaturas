@@ -96,6 +96,14 @@ class Moip::Subscription < Moip::Model
 	def cancel
 		self.class.put(base_url(:subscriptions, :code => self.code, :status => "cancel"), default_header({}.to_json)).parsed_response
 	end
+	
+	def cancel
+    if self.status != "cancel"
+      self.status = "cancel" 
+      self.class.put(base_url(:subscriptions, :code => self.code, :status => "cancel"), default_header).parsed_response
+      true
+    end
+  end
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#alterar_assinatura
 	def update_plan new_plan
