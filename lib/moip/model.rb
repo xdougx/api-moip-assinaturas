@@ -18,7 +18,7 @@ module Moip
 		def validate_response response
 			if response.key? "errors" and response["errors"].size > 0
 				error = response["errors"][0]
-				self.errors.add :moip_error, "[#{error["code"]}] #{error["description"]}"
+				self.errors.add :moip_error, "#{error["description"]}"
 				false
 			else
 				true
