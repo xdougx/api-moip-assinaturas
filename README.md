@@ -5,6 +5,8 @@ Gem desenvolvida para consumir a API BETA do Moip Assinaturas Brasil, <br>
 a gem segue as **especificações** do MOIP apresentadas neste endereço: <br>
 *http://moiplabs.github.io/assinaturas-docs/api.html*
 
+[![Gem Version](https://badge.fury.io/rb/api-moip-assinaturas.png)](http://badge.fury.io/rb/api-moip-assinaturas)
+
 #### Configurando ####
 
 **Instalando a gem**
