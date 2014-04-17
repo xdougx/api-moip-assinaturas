@@ -3,9 +3,9 @@ class Moip::Subscription < Moip::Model
 	include HTTParty
 	include Moip::Header
 
-	attr_accessor :code, :amount, :plan, :customer, 
-                :next_invoice_date, :status, :message, 
-                :invoice, :creation_date, 
+	attr_accessor :code, :amount, :plan, :customer,
+                :next_invoice_date, :status, :message,
+                :invoice, :creation_date,
                 :expiration_date, :subscriptions
 
 	validates :code, :amount, :plan, :customer, :presence => true
@@ -53,13 +53,13 @@ class Moip::Subscription < Moip::Model
 		@subscriptions
 	end
 
-	def invoices		
+	def invoices
 		@invoices ||= Moip::Invoice.build(:subscription_code => self.code).invoices
 	end
 
 	# see http://moiplabs.github.io/assinaturas-docs/api.html#listar_assinaturas
-	def load
-		list = self.class.get(base_url(:subscriptions), default_header).parsed_response
+	def load offset=0
+		list = self.class.get(base_url(:subscriptions, params: "offset=#{offset}"), default_header).parsed_response
 		self.subscriptions = list["subscriptions"]
 	end
 
