@@ -45,7 +45,7 @@ class Moip::Plan < Moip::Model
 	def plans= hash
 		@plans = []
 		hash.each do |e|
-			plan = Moip::Plan.new
+			plan = self.class.new
 			plan.set_parameters e
 			@plans << plan
 		end

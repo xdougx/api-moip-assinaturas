@@ -1,17 +1,22 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'moip/version'
 
 Gem::Specification.new do |s|
   s.name        = 'api-moip-assinaturas'
-  s.version     = '0.2.33'
-  s.date        = '2013-07-02'
+  s.version     = Moip::VERSION.dup
+  s.platform    = Gem::Platform::RUBY
   s.summary     = "Moip Assinaturas by Pixxel"
   s.description = "Gem desenvolvida para atender aos requisitos do moip api de assinaturas"
   s.authors     = ["Douglas Rossignolli"]
   s.email       = 'douglas@pixxel.net.br'
   s.homepage    = 'https://github.com/xdougx/api-moip-assinaturas'
   s.license     = 'Apache Licence 2.0'
-  s.files       = Dir["{lib/**/*.rb,lib/**/*.yml,README.rdoc,test/**/*.rb,Rakefile,*.gemspec}"]
+    
+  s.files         = `git ls-files`.split($/)
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 
   s.required_ruby_version     = '>= 1.9.3'
@@ -21,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
   s.add_runtime_dependency 'activemodel', '~> 4.1.6', '>= 4.1.6'
   s.add_runtime_dependency 'i18n', '~> 0.6.1', '>= 0.6.1'
+  
 end
