@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.8.11'
 
   s.add_runtime_dependency 'httparty', '>= 0.11.0'
-  s.add_dependency 'json', '>= 1.7.7'
-  s.add_dependency 'activemodel', '>= 3.2.12'
-  s.add_dependency 'i18n', '~> 0.6.1', '>= 0.6.1'
+  s.add_runtime_dependency 'json', '>= 1.7.7'
+  s.add_runtime_dependency 'activemodel', '>= 3.2.12'
+  s.add_runtime_dependency 'i18n', '~> 0.6.1', '>= 0.6.1'
 end
